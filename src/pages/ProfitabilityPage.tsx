@@ -119,7 +119,7 @@ export function ProfitabilityPage() {
           <button
             key={p.value}
             onClick={() => setPeriod(p.value)}
-            className={`px-3.5 py-2 rounded-lg text-sm font-medium transition ${
+            className={`px-3.5 py-2 min-h-[44px] rounded-lg text-sm font-medium transition ${
               period === p.value
                 ? 'bg-primary-600 text-white'
                 : 'bg-white border border-ink-200 text-ink-600 hover:bg-ink-50'

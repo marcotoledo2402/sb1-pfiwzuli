@@ -174,28 +174,32 @@ export function SalesPage() {
       ) : (
         <div className="space-y-2.5">
           {sales.map((sale) => (
-            <div key={sale.id} className="card p-4 flex items-center gap-3 group">
-              <div className="w-11 h-11 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center flex-shrink-0">
-                <ShoppingBag size={20} />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="font-medium text-ink-900 truncate">{sale.product?.name || 'Producto'}</div>
-                <div className="text-xs text-ink-400 mt-0.5">
-                  {formatNumber(sale.quantity)} u × {formatCurrency(sale.unit_price, symbol)} · {formatDateTime(sale.sold_at)}
+            <div key={sale.id} className="card p-4 flex flex-col gap-3 sm:flex-row sm:items-center group">
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="w-11 h-11 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center flex-shrink-0">
+                  <ShoppingBag size={20} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="font-medium text-ink-900 truncate">{sale.product?.name || 'Producto'}</div>
+                  <div className="text-xs text-ink-400 mt-0.5">
+                    {formatNumber(sale.quantity)} u × {formatCurrency(sale.unit_price, symbol)} · {formatDateTime(sale.sold_at)}
+                  </div>
                 </div>
               </div>
-              <div className="text-right flex-shrink-0">
-                <div className="font-display font-bold text-ink-900">{formatCurrency(sale.total_revenue, symbol)}</div>
-                <div className="text-xs text-primary-600 font-medium">
-                  +{formatCurrency(sale.total_profit, symbol)} · {formatMargin(sale.margin)}
+              <div className="flex items-center justify-between gap-3 sm:flex-shrink-0">
+                <div className="text-left sm:text-right">
+                  <div className="font-display font-bold text-ink-900">{formatCurrency(sale.total_revenue, symbol)}</div>
+                  <div className="text-xs text-primary-600 font-medium">
+                    +{formatCurrency(sale.total_profit, symbol)} · {formatMargin(sale.margin)}
+                  </div>
                 </div>
+                <button
+                  onClick={() => setDeleteTarget(sale)}
+                  className="icon-btn text-ink-400 hover:bg-error-50 hover:text-error-600"
+                >
+                  <Trash2 size={18} />
+                </button>
               </div>
-              <button
-                onClick={() => setDeleteTarget(sale)}
-                className="p-2 rounded-lg text-ink-400 hover:bg-error-50 hover:text-error-600 transition opacity-0 group-hover:opacity-100"
-              >
-                <Trash2 size={16} />
-              </button>
             </div>
           ))}
         </div>

@@ -29,7 +29,11 @@
     border-color: #1e293b;
   }
   .btn {
-    @apply inline-flex items-center justify-center gap-2 font-medium rounded-xl transition-all duration-150 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+    @apply inline-flex items-center justify-center gap-2 font-medium rounded-xl transition-all duration-150 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none min-h-[44px];
+  }
+  /* Touch-friendly tap target for icon-only buttons (min 44x44px, per mobile usability guidelines) */
+  .icon-btn {
+    @apply inline-flex items-center justify-center rounded-lg transition min-w-[44px] min-h-[44px];
   }
   .btn-primary {
     @apply btn bg-primary-600 text-white hover:bg-primary-700 px-4 py-2.5 text-sm shadow-sm;
@@ -65,7 +69,7 @@
     background-color: rgba(185, 28, 28, 0.3);
   }
   .input {
-    @apply w-full rounded-xl border border-ink-200 bg-white px-4 py-2.5 text-sm text-ink-900 placeholder:text-ink-400 transition focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none;
+    @apply w-full rounded-xl border border-ink-200 bg-white px-4 py-2.5 text-sm text-ink-900 placeholder:text-ink-400 transition focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none min-h-[44px];
   }
   .dark .input {
     background-color: #1e293b;

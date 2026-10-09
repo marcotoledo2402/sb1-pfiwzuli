@@ -183,26 +183,30 @@ export function ProductionPage() {
       ) : (
         <div className="space-y-2.5">
           {productions.map((prod) => (
-            <div key={prod.id} className="card p-4 flex items-center gap-3 group">
-              <div className="w-11 h-11 rounded-xl bg-accent-50 text-accent-600 flex items-center justify-center flex-shrink-0">
-                <Factory size={20} />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="font-medium text-ink-900 truncate">{prod.product?.name || 'Producto'}</div>
-                <div className="text-xs text-ink-400 mt-0.5">
-                  {formatNumber(prod.quantity)} unidades · {formatDateTime(prod.produced_at)}
+            <div key={prod.id} className="card p-4 flex flex-col gap-3 sm:flex-row sm:items-center group">
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="w-11 h-11 rounded-xl bg-accent-50 text-accent-600 flex items-center justify-center flex-shrink-0">
+                  <Factory size={20} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="font-medium text-ink-900 truncate">{prod.product?.name || 'Producto'}</div>
+                  <div className="text-xs text-ink-400 mt-0.5">
+                    {formatNumber(prod.quantity)} unidades · {formatDateTime(prod.produced_at)}
+                  </div>
                 </div>
               </div>
-              <div className="text-right flex-shrink-0">
-                <div className="font-display font-bold text-ink-900">{formatCurrency(prod.total_cost, symbol)}</div>
-                <div className="text-xs text-ink-400">Costo total</div>
+              <div className="flex items-center justify-between gap-3 sm:flex-shrink-0">
+                <div className="text-left sm:text-right">
+                  <div className="font-display font-bold text-ink-900">{formatCurrency(prod.total_cost, symbol)}</div>
+                  <div className="text-xs text-ink-400">Costo total</div>
+                </div>
+                <button
+                  onClick={() => setDeleteTarget(prod)}
+                  className="icon-btn text-ink-400 hover:bg-error-50 hover:text-error-600"
+                >
+                  <Trash2 size={18} />
+                </button>
               </div>
-              <button
-                onClick={() => setDeleteTarget(prod)}
-                className="p-2 rounded-lg text-ink-400 hover:bg-error-50 hover:text-error-600 transition opacity-0 group-hover:opacity-100"
-              >
-                <Trash2 size={16} />
-              </button>
             </div>
           ))}
         </div>

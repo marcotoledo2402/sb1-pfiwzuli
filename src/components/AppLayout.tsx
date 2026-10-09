@@ -53,7 +53,7 @@ export function AppLayout({ current, onNavigate, children }: AppLayoutProps) {
   const ThemeToggle = (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded-lg text-ink-400 hover:bg-ink-100 dark:hover:bg-ink-800 transition"
+      className="icon-btn text-ink-400 hover:bg-ink-100 dark:hover:bg-ink-800"
       title={theme === 'light' ? 'Modo oscuro' : 'Modo claro'}
     >
       {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
@@ -83,7 +83,7 @@ export function AppLayout({ current, onNavigate, children }: AppLayoutProps) {
             <button
               key={item.view}
               onClick={() => handleNav(item.view)}
-              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
+              className={`w-full flex items-center gap-3 px-3 py-2.5 min-h-[44px] rounded-xl text-sm font-medium transition-all ${
                 active
                   ? 'bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-400'
                   : 'text-ink-600 dark:text-ink-400 hover:bg-ink-100 dark:hover:bg-ink-800'
@@ -109,7 +109,7 @@ export function AppLayout({ current, onNavigate, children }: AppLayoutProps) {
         </div>
         <button
           onClick={() => setShowLogoutConfirm(true)}
-          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-ink-500 dark:text-ink-400 hover:bg-ink-100 dark:hover:bg-ink-800 transition"
+          className="w-full flex items-center gap-3 px-3 py-2.5 min-h-[44px] rounded-xl text-sm font-medium text-ink-500 dark:text-ink-400 hover:bg-ink-100 dark:hover:bg-ink-800 transition"
         >
           <LogOut size={18} className="text-ink-400" />
           Cerrar sesión
@@ -132,7 +132,7 @@ export function AppLayout({ current, onNavigate, children }: AppLayoutProps) {
           <div className="absolute left-0 top-0 bottom-0 w-72 bg-white dark:bg-ink-900 shadow-pop animate-slide-up">
             <button
               onClick={() => setSidebarOpen(false)}
-              className="absolute top-4 right-4 p-1.5 rounded-lg text-ink-400 hover:bg-ink-100 dark:hover:bg-ink-800"
+              className="icon-btn absolute top-3 right-3 text-ink-400 hover:bg-ink-100 dark:hover:bg-ink-800"
             >
               <X size={20} />
             </button>
@@ -145,7 +145,7 @@ export function AppLayout({ current, onNavigate, children }: AppLayoutProps) {
       <div className="lg:pl-64">
         {/* Mobile top bar */}
         <div className="lg:hidden sticky top-0 z-20 bg-white dark:bg-ink-900 border-b border-ink-200/60 dark:border-ink-800 px-4 h-14 flex items-center justify-between">
-          <button onClick={() => setSidebarOpen(true)} className="p-2 -ml-2 rounded-lg text-ink-600 dark:text-ink-300 hover:bg-ink-100 dark:hover:bg-ink-800">
+          <button onClick={() => setSidebarOpen(true)} className="icon-btn -ml-2.5 text-ink-600 dark:text-ink-300 hover:bg-ink-100 dark:hover:bg-ink-800">
             <Menu size={22} />
           </button>
           <div className="flex items-center gap-2">
@@ -174,7 +174,7 @@ export function AppLayout({ current, onNavigate, children }: AppLayoutProps) {
               <button
                 key={view}
                 onClick={() => handleNav(view)}
-                className={`flex flex-col items-center gap-0.5 px-2 py-1.5 rounded-lg transition ${
+                className={`flex-1 h-full flex flex-col items-center justify-center gap-0.5 min-w-[44px] min-h-[44px] rounded-lg transition ${
                   active ? 'text-primary-600 dark:text-primary-400' : 'text-ink-400'
                 }`}
               >

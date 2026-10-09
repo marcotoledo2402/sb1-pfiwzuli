@@ -254,35 +254,39 @@ export function IngredientsPage() {
       ) : (
         <div className="space-y-2.5">
           {filtered.map((ing) => (
-            <div key={ing.id} className="card p-4 flex items-center gap-3 hover:shadow-card-hover transition group">
-              <div className="w-11 h-11 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center flex-shrink-0">
-                <Leaf size={20} />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="font-medium text-ink-900 truncate">{ing.name}</div>
-                <div className="text-xs text-ink-400 mt-0.5">
-                  {ing.category} · {ing.unit} · Act. {formatRelativeTime(ing.updated_at)}
+            <div key={ing.id} className="card p-4 flex flex-col gap-3 sm:flex-row sm:items-center hover:shadow-card-hover transition group">
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="w-11 h-11 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center flex-shrink-0">
+                  <Leaf size={20} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="font-medium text-ink-900 truncate">{ing.name}</div>
+                  <div className="text-xs text-ink-400 mt-0.5">
+                    {ing.category} · {ing.unit} · Act. {formatRelativeTime(ing.updated_at)}
+                  </div>
                 </div>
               </div>
-              <div className="text-right flex-shrink-0">
-                <div className="font-display font-bold text-ink-900">{formatCurrency(ing.price, symbol)}</div>
-                {ing.package_quantity > 1 && (
-                  <div className="text-xs text-ink-400">x{ing.package_quantity} {ing.unit}</div>
-                )}
-                <div className={`text-xs font-medium mt-0.5 ${(ing.current_stock ?? 0) <= 0 ? 'text-error-600' : 'text-ink-500'}`}>
-                  Stock: {formatNumber(ing.current_stock ?? 0)} {ing.unit}
+              <div className="flex items-center justify-between gap-3 sm:flex-shrink-0">
+                <div className="text-left sm:text-right">
+                  <div className="font-display font-bold text-ink-900">{formatCurrency(ing.price, symbol)}</div>
+                  {ing.package_quantity > 1 && (
+                    <div className="text-xs text-ink-400">x{ing.package_quantity} {ing.unit}</div>
+                  )}
+                  <div className={`text-xs font-medium mt-0.5 ${(ing.current_stock ?? 0) <= 0 ? 'text-error-600' : 'text-ink-500'}`}>
+                    Stock: {formatNumber(ing.current_stock ?? 0)} {ing.unit}
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-center gap-1 flex-shrink-0">
-                <button onClick={() => openStockHistory(ing)} className="p-2 rounded-lg text-ink-400 hover:bg-ink-100 hover:text-ink-600 transition" title="Historial de stock">
-                  <Boxes size={16} />
-                </button>
-                <button onClick={() => setAdjustTarget(ing)} className="p-2 rounded-lg text-ink-400 hover:bg-blue-50 hover:text-blue-600 transition" title="Ajustar stock">
-                  <Pencil size={16} />
-                </button>
-                <button onClick={() => setDeleteTarget(ing)} className="p-2 rounded-lg text-ink-400 hover:bg-error-50 hover:text-error-600 transition" title="Eliminar">
-                  <Trash2 size={16} />
-                </button>
+                <div className="flex items-center flex-shrink-0">
+                  <button onClick={() => openStockHistory(ing)} className="icon-btn text-ink-400 hover:bg-ink-100 hover:text-ink-600" title="Historial de stock">
+                    <Boxes size={18} />
+                  </button>
+                  <button onClick={() => setAdjustTarget(ing)} className="icon-btn text-ink-400 hover:bg-blue-50 hover:text-blue-600" title="Ajustar stock">
+                    <Pencil size={18} />
+                  </button>
+                  <button onClick={() => setDeleteTarget(ing)} className="icon-btn text-ink-400 hover:bg-error-50 hover:text-error-600" title="Eliminar">
+                    <Trash2 size={18} />
+                  </button>
+                </div>
               </div>
             </div>
           ))}

@@ -385,7 +385,7 @@ export function Dashboard({ onNavigate }: DashboardProps) {
                     </div>
                     <button
                       onClick={alert.action}
-                      className="text-xs font-medium text-primary-600 hover:underline flex items-center gap-1 flex-shrink-0"
+                      className="text-xs font-medium text-primary-600 hover:underline flex items-center gap-1 flex-shrink-0 p-2 -m-2 min-h-[44px]"
                     >
                       {alert.actionLabel}
                       <ArrowRight size={12} />

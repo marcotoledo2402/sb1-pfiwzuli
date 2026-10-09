@@ -33,7 +33,7 @@ export function Modal({ open, onClose, title, subtitle, children, footer, size =
             </div>
             <button
               onClick={onClose}
-              className="p-1.5 -mt-1 -mr-2 rounded-lg text-ink-400 hover:bg-ink-100 hover:text-ink-600 transition"
+              className="icon-btn -mt-2 -mr-2 text-ink-400 hover:bg-ink-100 hover:text-ink-600"
             >
               <X size={20} />
             </button>
@@ -41,7 +41,9 @@ export function Modal({ open, onClose, title, subtitle, children, footer, size =
         )}
         <div className="px-6 py-5 overflow-y-auto flex-1">{children}</div>
         {footer && (
-          <div className="px-6 py-4 border-t border-ink-100 flex gap-3 justify-end">{footer}</div>
+          <div className="px-6 py-4 border-t border-ink-100 flex flex-col-reverse gap-2 sm:flex-row sm:gap-3 sm:justify-end [&>button]:w-full sm:[&>button]:w-auto">
+            {footer}
+          </div>
         )}
       </div>
     </div>

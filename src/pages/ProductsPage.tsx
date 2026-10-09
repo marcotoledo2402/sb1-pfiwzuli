@@ -413,24 +413,24 @@ export function ProductsPage() {
                   <Boxes size={12} className="inline mr-1" />
                   Stock: {formatNumber(prod.current_stock ?? 0)} {prod.unit}
                 </div>
-                <div className="flex items-center gap-1 mt-3 pt-3 border-t border-ink-100 opacity-0 group-hover:opacity-100 transition">
+                <div className="flex items-center gap-1 mt-3 pt-3 border-t border-ink-100">
                   <button
                     onClick={(e) => { e.stopPropagation(); setAdjustTarget(prod); }}
-                    className="btn-ghost text-xs"
+                    className="btn-ghost text-xs min-h-[44px]"
                   >
                     <Boxes size={14} /> Stock
                   </button>
                   <button
                     onClick={(e) => { e.stopPropagation(); openEdit(prod); }}
-                    className="btn-ghost text-xs"
+                    className="btn-ghost text-xs min-h-[44px]"
                   >
                     <Pencil size={14} /> Editar
                   </button>
                   <button
                     onClick={(e) => { e.stopPropagation(); setDeleteTarget(prod); }}
-                    className="btn-ghost text-xs text-error-600 hover:bg-error-50"
+                    className="icon-btn text-error-600 hover:bg-error-50 ml-auto"
                   >
-                    <Trash2 size={14} />
+                    <Trash2 size={16} />
                   </button>
                 </div>
               </div>
@@ -508,26 +508,28 @@ export function ProductsPage() {
                     const ing = ingredients.find((i) => i.id === c.ingredient_id);
                     const cost = ing ? componentCost(parseFloat(c.quantity) || 0, ing) : 0;
                     return (
-                      <div key={idx} className="flex items-center gap-2 bg-ink-50 rounded-xl p-2.5">
+                      <div key={idx} className="flex flex-wrap items-center gap-2 bg-ink-50 rounded-xl p-2.5">
                         <select
                           value={c.ingredient_id}
                           onChange={(e) => updateComponent(idx, 'ingredient_id', e.target.value)}
-                          className="input flex-1 py-2"
+                          className="input flex-1 min-w-[140px] py-2"
                         >
                           {ingredients.map((i) => <option key={i.id} value={i.id}>{i.name}</option>)}
                         </select>
-                        <input
-                          type="number"
-                          value={c.quantity}
-                          onChange={(e) => updateComponent(idx, 'quantity', e.target.value)}
-                          placeholder="Cantidad"
-                          className="input w-24 py-2"
-                        />
-                        <span className="text-xs text-ink-400 w-8">{ing?.unit}</span>
-                        <span className="text-sm font-medium text-ink-700 w-20 text-right">{formatCurrency(cost, symbol)}</span>
-                        <button onClick={() => removeComponent(idx)} className="p-1.5 text-ink-400 hover:text-error-600">
-                          <X size={16} />
-                        </button>
+                        <div className="flex items-center gap-2 flex-1 min-w-[180px] sm:flex-initial">
+                          <input
+                            type="number"
+                            value={c.quantity}
+                            onChange={(e) => updateComponent(idx, 'quantity', e.target.value)}
+                            placeholder="Cantidad"
+                            className="input w-24 py-2 flex-shrink-0"
+                          />
+                          <span className="text-xs text-ink-400 w-8 flex-shrink-0">{ing?.unit}</span>
+                          <span className="text-sm font-medium text-ink-700 flex-1 sm:w-20 text-right">{formatCurrency(cost, symbol)}</span>
+                          <button onClick={() => removeComponent(idx)} className="icon-btn text-ink-400 hover:text-error-600 flex-shrink-0">
+                            <X size={18} />
+                          </button>
+                        </div>
                       </div>
                     );
                   })}
@@ -546,27 +548,29 @@ export function ProductsPage() {
               ) : (
                 <div className="space-y-2">
                   {costs.map((c, idx) => (
-                    <div key={idx} className="flex items-center gap-2 bg-ink-50 rounded-xl p-2.5">
+                    <div key={idx} className="flex flex-wrap items-center gap-2 bg-ink-50 rounded-xl p-2.5">
                       <select
                         value={c.cost_type}
                         onChange={(e) => updateCost(idx, 'cost_type', e.target.value)}
-                        className="input flex-1 py-2"
+                        className="input flex-1 min-w-[140px] py-2"
                       >
                         {COST_TYPES.map((t) => <option key={t.value} value={t.value}>{t.label}</option>)}
                       </select>
-                      <div className="relative w-24">
-                        <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-ink-400 text-xs">{symbol}</span>
-                        <input
-                          type="number"
-                          value={c.amount}
-                          onChange={(e) => updateCost(idx, 'amount', e.target.value)}
-                          placeholder="0"
-                          className="input pl-6 py-2"
-                        />
+                      <div className="flex items-center gap-2 flex-shrink-0">
+                        <div className="relative w-24">
+                          <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-ink-400 text-xs">{symbol}</span>
+                          <input
+                            type="number"
+                            value={c.amount}
+                            onChange={(e) => updateCost(idx, 'amount', e.target.value)}
+                            placeholder="0"
+                            className="input pl-6 py-2"
+                          />
+                        </div>
+                        <button onClick={() => removeCost(idx)} className="icon-btn text-ink-400 hover:text-error-600">
+                          <X size={18} />
+                        </button>
                       </div>
-                      <button onClick={() => removeCost(idx)} className="p-1.5 text-ink-400 hover:text-error-600">
-                        <X size={16} />
-                      </button>
                     </div>
                   ))}
                 </div>
