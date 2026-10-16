@@ -13,6 +13,7 @@ import {
   X,
   Sun,
   Moon,
+  CreditCard,
 } from 'lucide-react';
 import type { AppView } from '@/lib/types';
 import { useAuth } from '@/lib/auth';
@@ -32,6 +33,7 @@ const NAV_ITEMS: { view: AppView; label: string; icon: typeof LayoutDashboard }[
   { view: 'ingredients', label: 'Insumos', icon: Leaf },
   { view: 'products', label: 'Productos', icon: Package },
   { view: 'profitability', label: 'Rentabilidad', icon: TrendingUp },
+  { view: 'plans', label: 'Planes', icon: CreditCard },
   { view: 'settings', label: 'Configuración', icon: SettingsIcon },
 ];
 

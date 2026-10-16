@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Settings as SettingsIcon, Save, Sparkles, LogOut, Sun, Moon } from 'lucide-react';
+import { Settings as SettingsIcon, Save, Sparkles, LogOut, Sun, Moon, ChevronRight } from 'lucide-react';
 import { useAuth } from '@/lib/auth';
 import { useTheme } from '@/lib/theme';
 import { supabase } from '@/lib/supabase';
 import { seedDemoData } from '@/lib/data';
 import { showToast } from '@/components/Toaster';
 import { ConfirmDialog } from '@/components/ConfirmDialog';
+import type { AppView } from '@/lib/types';
 
 const CURRENCIES = [
   { code: 'ARS', symbol: '$', label: 'Peso argentino (ARS)' },
@@ -18,7 +19,11 @@ const CURRENCIES = [
   { code: 'UYU', symbol: '$U', label: 'Peso uruguayo (UYU)' },
 ];
 
-export function SettingsPage() {
+interface SettingsPageProps {
+  onNavigate: (view: AppView) => void;
+}
+
+export function SettingsPage({ onNavigate }: SettingsPageProps) {
   const { user, business, refreshBusiness, signOut } = useAuth();
   const { theme, toggleTheme } = useTheme();
 
@@ -175,13 +180,19 @@ export function SettingsPage() {
           {user?.email}
         </div>
         <div className="flex flex-col gap-3">
-          <div className="flex items-center justify-between p-3.5 bg-ink-50 rounded-xl">
+          <button
+            onClick={() => onNavigate('plans')}
+            className="w-full flex items-center justify-between p-3.5 min-h-[44px] bg-ink-50 rounded-xl hover:bg-ink-100 transition text-left"
+          >
             <div>
               <div className="text-sm font-medium text-ink-700">Plan actual</div>
-              <div className="text-xs text-ink-400">Versión gratuita</div>
+              <div className="text-xs text-ink-400">Versión gratuita · Ver planes</div>
             </div>
-            <span className="text-xs font-medium px-2.5 py-1 bg-primary-50 text-primary-700 rounded-lg">Free</span>
-          </div>
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <span className="text-xs font-medium px-2.5 py-1 bg-primary-50 text-primary-700 rounded-lg">Free</span>
+              <ChevronRight size={16} className="text-ink-400" />
+            </div>
+          </button>
           <button onClick={() => setShowLogout(true)} className="btn-danger">
             <LogOut size={16} /> Cerrar sesión
           </button>

@@ -134,4 +134,5 @@ export type AppView =
   | 'production'
   | 'sales'
   | 'profitability'
+  | 'plans'
   | 'settings';

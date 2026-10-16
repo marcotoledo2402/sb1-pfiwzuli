@@ -10,6 +10,7 @@ import { ProductsPage } from '@/pages/ProductsPage';
 import { ProductionPage } from '@/pages/ProductionPage';
 import { SalesPage } from '@/pages/SalesPage';
 import { ProfitabilityPage } from '@/pages/ProfitabilityPage';
+import { PlansPage } from '@/pages/PlansPage';
 import { SettingsPage } from '@/pages/SettingsPage';
 import type { AppView } from '@/lib/types';
 
@@ -38,7 +39,8 @@ function AppContent() {
       {view === 'production' && <ProductionPage />}
       {view === 'sales' && <SalesPage />}
       {view === 'profitability' && <ProfitabilityPage />}
-      {view === 'settings' && <SettingsPage />}
+      {view === 'plans' && <PlansPage />}
+      {view === 'settings' && <SettingsPage onNavigate={setView} />}
     </AppLayout>
   );
 }
